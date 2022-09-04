@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HeladeriaTAMS.Data;
-using HeladeriaTAMS.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
