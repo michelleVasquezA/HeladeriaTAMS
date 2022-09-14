@@ -55,14 +55,31 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - HeladeriaTAMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted" style="border-color:#B74E4E ;" >
+        <div class="container" >
+            <div class="row">
+            <div class="col">
+                <h6><b>CONÓCENOS</b></h6>
+                <h6><small>Información Legal</small></h6>
+                <h6><small>Términos y Condiciones de Uso </small></h6>
+                <h6><small>Política de Privacidad</small></h6>
+            </div>
+            <div class="col">
+                <h6><b>REDES SOCIALES</b></h6>
+                <h6><small>Instagram <i class="fa-brands fa-instagram"></i></small></h6>
+                <h6><small>Facebook <i class="fa-brands fa-facebook"></i></small></h6>
+            </div>
+            <div class="col">
+                <h6><b>MI CUENTA</b></h6>
+                <h6><small>Iniciar Sesión</small></h6>
+            </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/64b57b2524.js" crossorigin="anonymous"></script> 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
