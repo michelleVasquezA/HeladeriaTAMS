@@ -27,3 +27,20 @@ h5 {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   
 }
+.appSubtitle {
+  font-family: 'Amatic SC', sans-serif; 
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 40px;
+  color: #B22902;
+  
+}
+
+.appSubtitlee {
+  font-family: 'Amatic SC', sans-serif; 
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 40px;
+  color: #0000;
+  
+}
