@@ -55,14 +55,32 @@ namespace HeladeriaTAMS.Data.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    email = table.Column<string>(type: "text", nullable: false),
-                    subject = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: true),
+                    email = table.Column<string>(type: "text", nullable: true),
+                    subject = table.Column<string>(type: "text", nullable: true),
                     comment = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_t_contacto", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "t_producto",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Descripcion = table.Column<string>(type: "text", nullable: true),
+                    Precio = table.Column<decimal>(type: "numeric", nullable: false),
+                    PorcentajeDescuento = table.Column<decimal>(type: "numeric", nullable: false),
+                    ImageName = table.Column<string>(type: "text", nullable: true),
+                    Status = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_producto", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -171,6 +189,28 @@ namespace HeladeriaTAMS.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "t_proforma",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserID = table.Column<string>(type: "text", nullable: true),
+                    ProductoId = table.Column<int>(type: "integer", nullable: true),
+                    Cantidad = table.Column<int>(type: "integer", nullable: false),
+                    Precio = table.Column<decimal>(type: "numeric", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_proforma", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_t_proforma_t_producto_ProductoId",
+                        column: x => x.ProductoId,
+                        principalTable: "t_producto",
+                        principalColumn: "id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -207,6 +247,11 @@ namespace HeladeriaTAMS.Data.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_t_proforma_ProductoId",
+                table: "t_proforma",
+                column: "ProductoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -230,10 +275,16 @@ namespace HeladeriaTAMS.Data.Migrations
                 name: "t_contacto");
 
             migrationBuilder.DropTable(
+                name: "t_proforma");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "t_producto");
         }
     }
 }
