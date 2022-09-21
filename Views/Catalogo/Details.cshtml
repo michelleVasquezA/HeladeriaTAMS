@@ -1,25 +1,54 @@
 @model HeladeriaTAMS.Models.Producto
 
-@{
-    ViewData["Title"] = "Detalles del Producto";
-}
+<!DOCTYPE html>
+<html lang="es">
 
-    <h1>Details</h1>
-    <div class="container">
-            <div class="col-sm-4">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="card-img-actions">
-                    <img class="img-responsive" width="375" height="250"
-                       src="/images/@Html.DisplayFor(model => model.ImageName)" alt="@Html.DisplayFor(model => model.ImageName)"  />
-                  </div>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
-                  <p class="card-text">@Html.DisplayFor(model => model.Descripcion)</p>
-                  <h5 class="card-title">@Html.DisplayFor(model => model.Precio)</h5>
-                  <a class="btn btn-primary" asp-action="Add" asp-route-id="Id">Add</a>
-                </div>
-              </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles</title>
+</head>
+
+<body>
+  @{
+    ViewData["Title"] = "Detalles del Producto";
+  }
+  <h2 style="margin: 2rem auto 2rem auto">Detalles del Producto</h2>
+
+  <div class="container" style="margin-bottom: 3rem;">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="card" style="border-radius: 20px; height: 420px;">
+          <div class="card-body" style="margin: auto auto;">
+            <div class="card-img-actions">
+              <img class="img-responsive" width="375" height="375"
+                src="/images/@Html.DisplayFor(model => model.ImageName)"
+                alt="@Html.DisplayFor(model => model.ImageName)" style="border-radius: 20px;" />
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="card" style="border-radius: 20px; padding: 1rem 1rem; height: 420px;">
+          <div class="card-body">
+            <h1 class="card-title">@Html.DisplayFor(model => model.Name)</h1><br>
+            <h5>Descripción:</h5>
+            <p class="card-text">@Html.DisplayFor(model => model.Descripcion)</p>
+            <h5>Precio del Producto:</h5>
+            <p class="card-title" 0>S/. @Html.DisplayFor(model => model.Precio)</p>
+            <h5>Stock:</h5>
+            <p>Disponible</p><br>
+            <div class="d-grid gap-2">
+              <button class="btn" asp-action="Add" asp-route-id="Id" style="background-color: #FFBCA7;"><strong>Añadir
+                  al Carrito <i class="fa-sharp fa-solid fa-cart-shopping"></i></strong></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</body>
+<script src="https://kit.fontawesome.com/42be4397d3.js" crossorigin="anonymous"></script>
+
+</html>
