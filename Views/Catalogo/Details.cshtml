@@ -40,8 +40,10 @@
             <h5>Stock:</h5>
             <p>Disponible</p><br>
             <div class="d-grid gap-2">
-              <button class="btn" asp-action="Add" asp-route-id="Id" style="background-color: #FFBCA7;"><strong>Añadir
-                  al Carrito <i class="fa-sharp fa-solid fa-cart-shopping"></i></strong></button>
+                    <a class="btn btn-primary" asp-action="Add" asp-route-id="@Model.Id" 
+                   style="background-color: #FFBCA7; color: black;"> Añadir al Carrito <i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+
+
             </div>
           </div>
         </div>

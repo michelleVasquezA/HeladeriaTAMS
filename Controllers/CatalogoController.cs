@@ -57,7 +57,8 @@ namespace HeladeriaTAMS.Controllers
                 var producto = await _context.DataProductos.FindAsync(id);
                 Console.WriteLine("------------------------------------------------");
                 Console.WriteLine("id " + id);
-
+                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("PRODUCTO ID " + producto.Id);
 
                 Proforma proforma = new Proforma();
                 proforma.Producto = producto;
