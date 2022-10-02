@@ -55,11 +55,7 @@ namespace HeladeriaTAMS.Controllers
                 return  View("VistaSinLogin",productos);
             }else{
                 var producto = await _context.DataProductos.FindAsync(id);
-                Console.WriteLine("------------------------------------------------");
-                Console.WriteLine("id " + id);
-                Console.WriteLine("------------------------------------------------");
-                Console.WriteLine("PRODUCTO ID " + producto.Id);
-
+                
                 Proforma proforma = new Proforma();
                 proforma.Producto = producto;
                 proforma.Precio = producto.Precio; //precio del producto en ese momento
