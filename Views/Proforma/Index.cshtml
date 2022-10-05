@@ -1,15 +1,28 @@
 @model dynamic;
 @using System.Collections.Generic;
 
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- <link rel="stylesheet" href="~/css/carrito.css" asp-append-version="true" /> -->
+  <title>Detalles</title>
+</head>
+
+
 @{
-    ViewData["Title"] = "Carrito";
+    <!-- ViewData["Title"] = "Carrito";-->
     IEnumerable<HeladeriaTAMS.Models.Proforma> listItemsCarrito = new List<Proforma>();
     listItemsCarrito = @Model.elementosCarrito;
     Decimal montoTotal = @Model.montoTotal;
 }
 
 <h1>@ViewData["Title"]</h1>
-
+<h2 style="margin: 2rem auto 2rem auto; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Detalles del Carrito</h2>
 <a class="btn btn-primary" asp-controller="Pago" asp-action="Create" asp-route-monto="@montoTotal">Pagar</a>
 <p>Total S/. @montoTotal</p>
 
@@ -49,3 +62,4 @@
         }
     </tbody>
 </table>
+</html>
