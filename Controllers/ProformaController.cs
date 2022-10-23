@@ -41,12 +41,13 @@ namespace HeladeriaTAMS.Controllers
                     Where(w => w.UserID.Equals(userIDSession) &&
                     w.Status.Equals("PENDIENTE"));
             var itemsCarrito = items.ToList();
-            var total = itemsCarrito.Sum(c => c.Cantidad * c.Precio);
+            decimal total = itemsCarrito.Sum(c => c.Cantidad * c.Precio);
 
             dynamic model = new ExpandoObject();
             model.montoTotal = total;
             model.elementosCarrito = itemsCarrito;
 
+            TempData["montoTotal"] =total.ToString();
             return View(model);
         }
 

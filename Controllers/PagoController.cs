@@ -27,13 +27,14 @@ namespace HeladeriaTAMS.Controllers
             _context = context;
         }
 
-        public IActionResult Create(Decimal monto)
+        public IActionResult Create()
         {
             Pago pago = new Pago();
             pago.UserID = _userManager.GetUserName(User);
-            pago.MontoTotal = monto;
+            pago.MontoTotal =  Convert.ToDecimal(TempData["montoTotal"]);
             return View(pago);
         }
+
 
         [HttpPost]
         public IActionResult Pagar(Pago pago)
@@ -53,7 +54,7 @@ namespace HeladeriaTAMS.Controllers
             pedido.Status = "PENDIENTE";
             _context.Add(pedido);
 
-
+     
             List<DetallePedido> itemsPedido = new List<DetallePedido>();
             foreach(var item in itemsProforma.ToList()){
                 DetallePedido detallePedido = new DetallePedido();
@@ -74,8 +75,64 @@ namespace HeladeriaTAMS.Controllers
 
             _context.SaveChanges();
 
+
             ViewData["Message"] = "El pago se ha registrado";
-            return View("Create");
+
+            TempData["PedidoId"] = pedido.ID;
+            // return View("Create");
+
+             return RedirectToAction("RegistrarPagoSubmit");
+        }
+        
+          //MOSTRAR EL DETALLE DEL PAGO
+        public IActionResult RegistrarPagoSubmit(){
+
+            int pedidoID =  (int)TempData["PedidoId"] ;
+
+
+        Console.WriteLine("GENERAR LA VISTA" + " " + pedidoID);
+            var productos = from o in _context.DataProductos select o;
+            var order = from o in _context.DataPedido select o;
+            var orderDetail = from o in _context.DataDetallePedido select o;
+            
+            var pagos = order.Where(s=> s.ID==pedidoID);
+            var detaPedidos = orderDetail.Where(s=> s.pedido.ID==pedidoID);
+
+            Console.WriteLine("---CONTEO PAGOS--------------------------------------------------");
+            Console.WriteLine(pagos.ToList().Count.ToString());
+
+            Console.WriteLine("---CONTEO- DETALLE-------------------------------------------------");
+            Console.WriteLine(detaPedidos.ToList().Count.ToString());
+
+            Console.WriteLine("---CONTEO PRODUCTOS--------------------------------------------------");
+            Console.WriteLine(productos.ToList().Count.ToString());
+
+            var pd = new Producto();
+            var ListadoFiltroProd = new List<Producto>();
+            
+           /*  foreach (DetallePedido p in detaPedidos.ToList()){
+              pd = (Producto)productos.Where(s => s.Id.Equals(p.Producto.Id)) ;
+            
+            Console.WriteLine("---NOMBRES---------------------------------------------------------");
+            Console.WriteLine(pd.Name);
+            }
+            */
+
+            //ListadoFiltroProd = productos.Where(s => detaPedidos.ToList().Any(f => f.Producto.Id == s.Id)).ToList();
+            int[] idList = new int[detaPedidos.ToList().Count];
+            
+            for(int i=0; i<detaPedidos.ToList().Count; i++){
+                  idList[i] = detaPedidos.ToList()[i].Producto.Id;
+                  //GUARDA LOS IDS DEL DETALLE DEL PEDIDO
+
+                 Console.WriteLine("---ID DETALLE PEDIDO---------------------------------------------------------");
+            Console.WriteLine(idList[i]);
+
+            }
+            productos = productos.Where(s => idList.Contains(s.Id));
+            //FILTRA EL ID DEL PEDIDO VS CON LOS QUE ESTAN EN LA BD
+
+          return View(productos);
         }
 
         public IActionResult Index()
