@@ -32,7 +32,7 @@ namespace HeladeriaTAMS.Controllers
  
 
             [HttpPost]
-        public async Task<IActionResult> Create(Contacto objContacto)
+        public  IActionResult Create(Contacto objContacto)
         {
              Console.WriteLine("--------------------------------------------");
               Console.WriteLine("objContacto: " + objContacto.Name);
