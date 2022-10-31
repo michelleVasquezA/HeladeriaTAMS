@@ -35,7 +35,9 @@ namespace HeladeriaTAMS.Controllers
         {
             Pago pago = new Pago();
             pago.UserID = _userManager.GetUserName(User);
-            pago.MontoTotal =  Convert.ToDecimal(TempData["montoTotal"]);
+
+            pago.MontoTotal = monto;
+            //pago.MontoTotal =  Convert.ToDecimal(TempData["montoTotal"]);
             return View(pago);
         }
 
@@ -83,9 +85,9 @@ namespace HeladeriaTAMS.Controllers
             ViewData["Message"] = "El pago se ha registrado";
 
             TempData["PedidoId"] = pedido.ID;
-            // return View("Create");
+            //   return View("Create");
 
-             return RedirectToAction("RegistrarPagoSubmit");
+           return RedirectToAction("RegistrarPagoSubmit");
         }
         
           //MOSTRAR EL DETALLE DEL PAGO
