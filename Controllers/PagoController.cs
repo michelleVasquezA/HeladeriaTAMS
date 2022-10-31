@@ -31,7 +31,7 @@ namespace HeladeriaTAMS.Controllers
             _context = context;
         }
 
-        public IActionResult Create()
+        public IActionResult Create(Decimal monto)
         {
             Pago pago = new Pago();
             pago.UserID = _userManager.GetUserName(User);
