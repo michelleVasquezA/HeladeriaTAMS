@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HeladeriaTAMS.Data;
+using HeladeriaTAMS.Integration.Sendgrid;
 
 using HeladeriaTAMS.Services;
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,9 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddScoped<ProductoService, ProductoService>();
-
+builder.Services.AddSingleton<SendMailIntegration>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -28,6 +31,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
