@@ -27,64 +27,21 @@ namespace HeladeriaTAMS.Integration.Sendgrid
 
 
         public async Task SendMail(string correoDestino,string userDestino,string titulo, string contenido,string method){
-           ACCESS_TOKEN = System.Environment.GetEnvironmentVariables()["SENDGRID_KEY"].ToString();
-            if(method.Equals(SEND_SENDGRID)){
-                await SendMailSengrid(correoDestino,userDestino, titulo, contenido);
-            }else{
-                await SendMailSengridRest(correoDestino,userDestino,titulo, contenido);
-            }
+            await SendMailSengrid(correoDestino,userDestino, titulo, contenido);
         }
  
         private async Task SendMailSengrid(string correoDestino,string userDestino ,string titulo, string contenido){
+            ACCESS_TOKEN = System.Environment.GetEnvironmentVariables()["SENDGRID_KEY"].ToString();
             var client = new SendGridClient(ACCESS_TOKEN);
             var from = new EmailAddress(From, FromLabel);
             var subject = titulo;
-            var to = new EmailAddress("tatiana_florez@usmp.pe", "Tatiana");
+            var to = new EmailAddress(correoDestino, userDestino);
             var plainTextContent = contenido;
             var htmlContent = "contenido";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
         }
 
-        private async Task  SendMailSengridRest(string correoDestino,string userDestino,string titulo, string contenido){
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.BaseAddress = new Uri(URL_API_SENDGRID);
-             httpClient.DefaultRequestHeaders.Authorization = 
-                new AuthenticationHeaderValue("Bearer", ACCESS_TOKEN);
-  
-            var jsonObject = new StringBuilder();
-            jsonObject.Append("{");
-            jsonObject.Append("\"categories\": [");
-            jsonObject.Append("\"demo\" ");
-            jsonObject.Append("],");
-            jsonObject.Append("\"from\": {");
-            jsonObject.Append("\"email\": \"tatiana_florez@usmp.pe\","); 
-            jsonObject.Append("\"name\": \"Frederick \"");
-            jsonObject.Append("},");
-            jsonObject.Append("\"personalizations\": [");
-            jsonObject.Append("{");
-            jsonObject.Append("      \"to\": [");
-            jsonObject.Append("        {");
-            jsonObject.Append("\"email\": \""+correoDestino+"\",");
-            jsonObject.Append("\"name\": \"Fred D\" ");
-            jsonObject.Append("}");
-            jsonObject.Append("],");
-            jsonObject.Append("\"subject\": \"Hola\" ");
-            jsonObject.Append("}");
-            jsonObject.Append("],");
-            jsonObject.Append("\"content\": [");
-            jsonObject.Append("{");
-            jsonObject.Append("\"type\": \"text/plain\",");
-            jsonObject.Append("\"value\": \"Hola ahora ya uso sendgrid!\" ");
-            jsonObject.Append("}");
-            jsonObject.Append("],  ");
-            jsonObject.Append("}");
-
-            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
-            var result = await httpClient.PostAsync(URL_API_SENDGRID, content);
-        }
+   
     }
 }

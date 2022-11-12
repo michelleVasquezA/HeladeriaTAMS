@@ -43,8 +43,8 @@ namespace HeladeriaTAMS.Controllers
                 _context.SaveChanges();
                 await _sendgrid.SendMail(objContacto.Email,
                 objContacto.Name,
-                "Bienvenido adios",
-                "Resivimos su consulta y le responderemos lo antes posible. Gracias",
+                objContacto.Subject,
+                objContacto.Comment,
                 SendMailIntegration.SEND_SENDGRID);
                 ViewData["Message"] = "Se registro el contacto";
                 return View("Index");
