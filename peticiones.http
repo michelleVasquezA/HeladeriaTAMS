@@ -12,6 +12,38 @@ GET https://gorest.co.in/public/v2/users HTTP/1.1
 
 POST https://gorest.co.in/public/v2/users HTTP/1.1
 
+POST https://api.sendgrid.com/v3/mail/send HTTP/1.1
+Authorization: Bearer <TOKEN>
+Content-Type: application/json
+
+{
+  "categories": [
+    "demo"
+  ],
+  "from": {
+    "email": "tatiana_florez@usmp.pe", //correo origen  settings\sender authentification
+    "name": "Mail Service"
+  },
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "estefaniflorez09@gmail.com", //correo destino variable
+          "name": "HeladeriaTAMS"
+        }
+      ],
+      "subject": "Hola"
+    }
+  ],
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "Hola ahora ya uso sendgrid!"
+    }
+  ],
+}
+
+
 GET https://api.spotify.com/v1/me HTTP/1.1
 Accept: application/json
 Authorization: Bearer BQAaqxjJNiYpQ4jD6HptCexdV8WqF2vwO4GF23WgVPDzJvv0-4_JPHhWVeQ960xWjlyUKOl7sIr7Dn_ovzkNRITBhrwMFrry1TQrkEgVyvUwJOsy57ZrJRY8gWihMoDY60slrE0Pg5GImR-sTiiDSRnAzmHcvJHdE5ptXnT5fegzqfhup9x8sOFYpQsO4dO_fNRQ-BJr_q_y
