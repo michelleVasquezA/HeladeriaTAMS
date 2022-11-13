@@ -13,34 +13,25 @@ GET https://gorest.co.in/public/v2/users HTTP/1.1
 POST https://gorest.co.in/public/v2/users HTTP/1.1
 
 POST https://api.sendgrid.com/v3/mail/send HTTP/1.1
-Authorization: Bearer <TOKEN>
+Authorization: Bearer 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
 Content-Type: application/json
 
 {
   "categories": [
     "demo"
   ],
-  "from": {
-    "email": "tatiana_florez@usmp.pe", //correo origen  settings\sender authentification
-    "name": "Mail Service"
-  },
-  "personalizations": [
-    {
-      "to": [
-        {
-          "email": "estefaniflorez09@gmail.com", //correo destino variable
-          "name": "HeladeriaTAMS"
-        }
-      ],
-      "subject": "Hola"
-    }
-  ],
-  "content": [
-    {
-      "type": "text/plain",
-      "value": "Hola ahora ya uso sendgrid!"
-    }
-  ],
+  "personalizations": [{
+    "to": [{
+        "email": "tatiana_florez@usmp.pe"
+        }]}],
+        "from": {
+            "email": "tatiana_florez@usmp.pe"
+            },
+            "subject": "Hello,HELADERIA TAMS!",
+            "content": [{
+                "type": "text/plain",
+                 "value": "Gracias por Contactarnos"
+                 }],
 }
 
 
