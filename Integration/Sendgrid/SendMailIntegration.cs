@@ -35,7 +35,8 @@ namespace HeladeriaTAMS.Integration.Sendgrid
             var client = new SendGridClient(ACCESS_TOKEN);
             var from = new EmailAddress(From, FromLabel);
             var subject = titulo;
-            var to = new EmailAddress(correoDestino, userDestino);
+            //var to = new EmailAddress("correoDestino", "userDestino");
+            var to = new EmailAddress("diego.alejandro.13@hotmail.com", "diego");
             var plainTextContent = contenido;
             var htmlContent = "contenido";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
