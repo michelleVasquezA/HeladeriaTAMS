@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HeladeriaTAMS.Models;
 using HeladeriaTAMS.Data;
-using HeladeriaTAMS.Integration.Sendgrid;
  
 
 namespace HeladeriaTAMS.Controllers
@@ -16,18 +15,14 @@ namespace HeladeriaTAMS.Controllers
     public class ContactoController : Controller
     {
         private readonly ILogger<ContactoController> _logger;
-        private readonly SendMailIntegration _sendgrid;
 
 //agregamos nueva sentencia
         private readonly ApplicationDbContext _context;
-     
 
-        public ContactoController(ILogger<ContactoController> logger, ApplicationDbContext context,SendMailIntegration sendgrid)
+        public ContactoController(ILogger<ContactoController> logger, ApplicationDbContext context)
         {
             _logger = logger;
              _context = context; //AGREGAMOS
-             _sendgrid = sendgrid;
-            
         }
 
         public IActionResult Index()
@@ -36,18 +31,21 @@ namespace HeladeriaTAMS.Controllers
         }
  
 
-        [HttpPost]
-        public async Task<IActionResult> Create(Contacto objContacto)
+            [HttpPost]
+        public  IActionResult Create(Contacto objContacto)
         {
-                _context.Add(objContacto);
-                _context.SaveChanges();
-                await _sendgrid.SendMail(objContacto.Email,
-                objContacto.Name,
-                objContacto.Subject,
-                objContacto.Comment,
-                SendMailIntegration.SEND_SENDGRID);
-                ViewData["Message"] = "Se registro el contacto";
-                return View("Index");
+             Console.WriteLine("--------------------------------------------");
+              Console.WriteLine("objContacto: " + objContacto.Name);
+
+              if (objContacto != null){
+                    _context.Add(objContacto);
+                    _context.SaveChanges();
+              }else{
+                 Console.WriteLine("--------------------------------------------");
+              Console.WriteLine("objContacto esta nullo: " );
+              }
+
+                    return View("VistaSubmit");
         }
 
 
