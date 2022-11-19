@@ -1,0 +1,84 @@
+#boton {
+    border: #E38B29 3px solid;
+    border-radius: 30px;
+    background-color: #FECD70;
+    color: #E38B29;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    padding: 5px 0 3px 0;
+    margin: 15px auto 0;
+    width: 100%;
+}
+
+#boton:hover {
+    background-color: #FFAE6D;
+    border: white 3px solid;
+    color: white;
+}
+
+.cuerpo {
+    background-color: #FDEEDC;
+}
+
+.linea {
+    border-top: 3px solid #E38B29;
+}
+
+.imagen {
+    border-radius: 30px;
+    width: 100%;
+    height: 495px;
+}
+
+.p-respuesta {
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 17px; 
+    font-weight: bold;
+}
+
+.p-texto {
+    color: #ffa500;
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.p-titulo {
+    color: #E38B29;
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 40px; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.titulo {
+    background-color: #FFAE6D; 
+    border: white 8px dotted;
+    border-radius: 30px;
+    margin: 1.5rem auto;
+    padding: 0;
+    text-shadow: 0 0 20px white, 0 0 40px white;
+    height: 68px;
+    width: 500px;
+}
+
+.titulo-texto {
+    color: white;
+    font-family: 'Sacramento', cursive;
+    font-weight: 600;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: auto;
+}
+
+.Colores {
+    color: #E38B29;
+    color: #F1A661;
+    color: #FFD8A9;
+    color: #FDEEDC;
+    color: #E3C770;
+    color: #FECD70;
+    color: #FFAE6D;
+    color: #F3E0B5;
+    color: #ffa500;
+}

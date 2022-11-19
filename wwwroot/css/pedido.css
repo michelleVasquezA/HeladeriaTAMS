@@ -1,0 +1,121 @@
+.boton-1 {
+    background-color: #F1A661;
+    border-radius: 30px;
+    padding: 5px 7.5px;
+}
+
+.boton-2 {
+    background-color: #ffa500;
+    border-radius: 30px;
+    padding: 5px 7.5px;
+}
+
+.boton-3 {
+    background-color: #E38B29;
+    border-radius: 30px;
+    padding: 5px 8px;
+}
+
+.boton {
+    background-color: #ebbe68;
+    border-radius: 30px;
+    color: black;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 100px;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: #FECD70;
+    color: #E38B29;
+}
+
+.card {
+    width: 50%;
+    margin: 30px auto 0px;
+}
+
+.cuerpo {
+    background-color: #FDEEDC;
+    margin-bottom: 110px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+i {
+    color: #444444;
+}
+
+.p-respuesta {
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 17px; 
+    font-weight: bold;
+}
+
+.p-texto {
+    color: #ffa500;
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.p-titulo {
+    color: #E38B29;
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 40px; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.linea {
+    border-top: 3px solid #E38B29;
+}
+
+table {
+    background-color: #FECD70;
+    border-radius: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+td {
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 17px; 
+}
+
+th {
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 17px; 
+}
+
+.titulo {
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.total {
+    font-family: 'Rajdhani', sans-serif; 
+    font-size: 25px; 
+    font-weight: bold;
+    margin-top: 15px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.Colores {
+    color: #E38B29;
+    color: #F1A661;
+    color: #FFD8A9;
+    color: #FDEEDC;
+    color: #E3C770;
+    color: #FECD70;
+    color: #FFAE6D;
+    color: #F3E0B5;
+    color: #ffa500;
+}
